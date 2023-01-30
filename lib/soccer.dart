@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth/soccer.dart';
+import 'package:flutter_bluetooth/main.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 void main() => runApp(MyApp());
@@ -15,21 +15,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NoBot Mobile',
+      title: 'NoBot Soccer',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: BluetoothApp(),
+      home: BluetoothAppSoccer(),
     );
   }
 }
 
-class BluetoothApp extends StatefulWidget {
+class BluetoothAppSoccer extends StatefulWidget {
   @override
-  _BluetoothAppState createState() => _BluetoothAppState();
+  _BluetoothAppSoccerState createState() => _BluetoothAppSoccerState();
 }
 
-class _BluetoothAppState extends State<BluetoothApp> {
+class _BluetoothAppSoccerState extends State<BluetoothAppSoccer> {
   // Initializing the Bluetooth connection state to be unknown
   BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
   // Initializing a global key, as it would help us in showing a SnackBar later
@@ -157,14 +157,14 @@ class _BluetoothAppState extends State<BluetoothApp> {
       home: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text("NoBot Mobile"),
+          title: Text("NoBot Soccer"),
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
               "assets/images/logo_nomobase.png",
             ),
           ),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.green,
           actions: <Widget>[
             FlatButton.icon(
               icon: Icon(
@@ -285,44 +285,44 @@ class _BluetoothAppState extends State<BluetoothApp> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                  side: new BorderSide(
-                                    color: colors['neutralBorderColor'],
-                                    width: 3,
-                                  ),
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                                child: Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "LED",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: colors['onTextColor'],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    FlatButton(
-                                      onPressed: _connected
-                                          ? _sendOnMessageToBluetooth
-                                          : null,
-                                      child: Text("ON"),
-                                    ),
-                                    FlatButton(
-                                      onPressed: _connected
-                                          ? _sendOffMessageToBluetooth
-                                          : null,
-                                      child: Text("OFF"),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // Card(
+                              //   shape: RoundedRectangleBorder(
+                              //     side: new BorderSide(
+                              //       color: colors['neutralBorderColor'],
+                              //       width: 3,
+                              //     ),
+                              //     borderRadius: BorderRadius.circular(4.0),
+                              //   ),
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       Expanded(
+                              //         child: Padding(
+                              //           padding:
+                              //               const EdgeInsets.only(left: 8.0),
+                              //           child: Text(
+                              //             "LED",
+                              //             style: TextStyle(
+                              //               fontSize: 20,
+                              //               color: colors['onTextColor'],
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       FlatButton(
+                              //         onPressed: _connected
+                              //             ? _sendOnMessageToBluetooth
+                              //             : null,
+                              //         child: Text("ON"),
+                              //       ),
+                              //       FlatButton(
+                              //         onPressed: _connected
+                              //             ? _sendOffMessageToBluetooth
+                              //             : null,
+                              //         child: Text("OFF"),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                               SizedBox(
                                 height: 30.0,
                               ),
@@ -546,12 +546,12 @@ class _BluetoothAppState extends State<BluetoothApp> {
                             },
                           ),
                           ElevatedButton(
-                            child: Text("Control Soccer"),
+                            child: Text("Control Robot Mobile"),
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => BluetoothAppSoccer(),
+                                  builder: (context) => BluetoothApp(),
                                 ),
                               );
                             },
